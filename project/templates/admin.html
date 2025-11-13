@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard</title>
+
+  <!-- Bootstrap -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+  <style>
+    body {
+      background-color: #0d1117;
+      color: white;
+      min-height: 100vh;
+    }
+    nav {
+      background-color: #161b22;
+      border-bottom: 2px solid aqua;
+    }
+    nav a.nav-link {
+      color: aqua !important;
+      font-weight: 500;
+    }
+    nav a.nav-link:hover {
+      color: white !important;
+    }
+    nav .navbar-brand {
+      color: aqua;
+      font-weight: bold;
+      font-size: 1.3rem;
+    }
+
+    .container-box {
+      background: #1b293d;
+      padding: 30px;
+      border-radius: 12px;
+      border: 3px solid aqua;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+      max-width: 500px;
+      width: 90%;
+      margin: 80px auto;
+      text-align: center;
+    }
+
+    .container-box h2 {
+      font-size: 1.6rem;
+      margin-bottom: 20px;
+    }
+
+    .btn-custom {
+      background-color: aqua;
+      color: black;
+      font-weight: bold;
+      border: none;
+    }
+    .btn-custom:hover {
+      background-color: white;
+      color: black;
+    }
+
+    a.logout-link {
+      color: white;
+      text-decoration: none;
+    }
+    a.logout-link:hover {
+      color: black;
+      text-decoration: none;
+    }
+
+    /* RESPONSIVE DESIGN */
+    @media (max-width: 768px) {
+      nav .navbar-brand {
+        font-size: 1.2rem;
+      }
+      .container-box {
+        margin: 40px auto;
+        padding: 20px;
+      }
+      .container-box h2 {
+        font-size: 1.3rem;
+      }
+      .btn-custom {
+        width: 100%;
+        font-size: 1rem;
+      }
+    }
+
+    @media (max-width: 576px) {
+      .container-box {
+        width: 95%;
+        margin: 30px auto;
+      }
+      .container-box h2 {
+        font-size: 1.2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg">
+    <div class="container">
+      <a class="navbar-brand" href="{% url 'admin' %}" style="color:aqua;">ADMIN</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
+        <span style="color: aqua; font-size: 1.5rem;">☰</span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item"><a href="{% url 'course' %}" class="nav-link">Add Course</a></li>
+          <li class="nav-item"><a href="{% url 'student' %}" class="nav-link">Add Student</a></li>
+          <li class="nav-item"><a href="{% url 'show' %}" class="nav-link">Show Students</a></li>
+          <li class="nav-item"><a href="{% url 'show_teachers' %}" class="nav-link">Show Teachers</a></li>
+          <li class="nav-item"><a href="{% url 'logout_fun' %}" class="nav-link">Logout</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  {% if messages %}
+  {% for m in messages %}
+    {% if m.tags == 'success' %}
+      <div class="alert alert-success alert-dismissible fade show mt-3" role="alert">
+        <h6>{{ m }}</h6>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+    {% endif %}
+  {% endfor %}
+{% endif %}
+
+  <div class="container-box">
+    <h2>Welcome to Admin Dashboard</h2>
+  </div>
+
+</body>
+</html>
